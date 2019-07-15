@@ -7,7 +7,7 @@ import static java.util.Arrays.asList;
 
 public class StringCalculator {
 
-    public int add(String numbers) {
+    public int add(String numbers) throws Exception {
 
         numbers = standardiseSeparators(numbers);
 
@@ -20,7 +20,12 @@ public class StringCalculator {
         int sumTotal = 0;
 
         for (Integer number : numberList) {
-            sumTotal += number;
+            if(number<0)
+                throw new NumberFormatException("negatives not allowed: "+number);
+
+            if(number <= 1000) {
+                sumTotal += number;
+            }
         }
 
         return sumTotal;
